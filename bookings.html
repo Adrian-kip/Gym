@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SEO Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join Iron Peak Gym - Sign up for membership, personal training, or book a free tour of our premium fitness facility.">
+    <meta name="keywords" content="gym membership, join gym, personal training booking, fitness consultation">
+    <title>Iron Peak Gym | Membership & Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon, Fonts, CSS same as index.html -->
+    <!-- ... -->
+</head>
+<body>
+     <!-- Navigation -->
+     <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">IRON<span>PEAK</span></a>
+            <div class="menu-toggle" id="mobileMenu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="bookings.html">Membership</a></li>
+                <li><a href="#testimonials">Success Stories</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="bookings.html" class="btn btn-primary">Free Trial</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Chatbot (same as index.html) -->
+    <!-- ... -->
+
+    <!-- Navigation (same as index.html) -->
+    <!-- ... -->
+
+    <!-- Booking Hero -->
+    <section class="page-hero">
+        <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1534258936925-c58bed479fcb')">
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>START YOUR <span>JOURNEY</span></h1>
+                <p class="lead">Book your free consultation or sign up for membership today</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-container">
+                <div class="booking-info">
+                    <h2>GET STARTED IN 3 EASY STEPS</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Book Your Consultation</h3>
+                                <p>Schedule a free tour and fitness assessment with one of our coaches.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Create Your Plan</h3>
+                                <p>We'll design a customized program based on your goals and fitness level.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Start Training</h3>
+                                <p>Begin your transformation with guidance from our expert team.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h3>HAVE QUESTIONS?</h3>
+                        <p><i class="fas fa-phone"></i> Call us: (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> Email: info@ironpeak.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Visit: 123 Fitness St, Gym City</p>
+                    </div>
+                </div>
+                
+                <div class="booking-form">
+                    <h2>BOOK YOUR <span>FREE CONSULTATION</span></h2>
+                    <form action="https://formspree.io/f/your-form-id" method="POST" id="bookingForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Interest</label>
+                            <select id="service" name="service" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="membership">Gym Membership</option>
+                                <option value="personal-training">Personal Training</option>
+                                <option value="group-classes">Group Classes</option>
+                                <option value="tour">Facility Tour</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date">Preferred Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Goals/Questions</label>
+                            <textarea id="message" name="message" rows="4"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Benefits -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">MEMBERSHIP <span>BENEFITS</span></h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>No Contracts</h3>
+                    <p>Month-to-month membership with no long-term commitment required.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Bring a Friend</h3>
+                    <p>Free guest passes every month to train with friends or family.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-lock-open"></i>
+                    </div>
+                    <h3>24/7 Access</h3>
+                    <p>Work out whenever it fits your schedule with our round-the-clock access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <!-- ... -->
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

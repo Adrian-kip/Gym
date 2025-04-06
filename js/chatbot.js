@@ -1,109 +1,87 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const chatbotBtn = document.getElementById('chatbotBtn');
-    const chatbotContainer = document.getElementById('chatbotContainer');
-    const closeChatbot = document.getElementById('closeChatbot');
-    const sendMessageBtn = document.getElementById('sendMessage');
-    const userInput = document.getElementById('userInput');
-    const chatbotMessages = document.getElementById('chatbotMessages');
+// Chatbot functionality
+const chatbotBtn = document.getElementById('chatbotBtn');
+const chatbotContainer = document.getElementById('chatbotContainer');
+const closeChatbot = document.getElementById('closeChatbot');
+const sendMessageBtn = document.getElementById('sendMessage');
+const userInput = document.getElementById('userInput');
+const chatbotMessages = document.getElementById('chatbotMessages');
+
+// Toggle chatbot visibility
+chatbotBtn.addEventListener('click', () => {
+    chatbotContainer.classList.toggle('active');
+});
+
+closeChatbot.addEventListener('click', () => {
+    chatbotContainer.classList.remove('active');
+});
+
+// Send message function
+const sendMessage = () => {
+    const message = userInput.value.trim();
+    if (message === '') return;
     
-    // Toggle chatbot visibility
-    chatbotBtn.addEventListener('click', () => {
-        chatbotContainer.classList.toggle('active');
-    });
+    // Add user message to chat
+    addMessage(message, 'user');
+    userInput.value = '';
     
-    closeChatbot.addEventListener('click', () => {
-        chatbotContainer.classList.remove('active');
-    });
-    
-    // Chatbot responses
-    const botResponses = {
-        greeting: ["Hello! How can I help you today?", "Hi there! What can I do for you?", "Welcome to Iron Peak! How can I assist you?"],
-        membership: ["We offer several membership options: Basic ($49/mo), Premium ($79/mo), and Platinum ($99/mo).", "Our most popular plan is the Premium membership at $79/month which includes group classes."],
-        hours: ["We're open 24/7 so you can work out whenever it's convenient for you!", "Our facility is open 24 hours a day, 7 days a week."],
-        training: ["We have 45+ certified personal trainers specializing in various disciplines. Would you like to book a session?", "Our trainers can create customized programs based on your goals. The first session is free with Premium membership."],
-        classes: ["We offer HIIT, Powerlifting, Yoga, Cycling, and more. Check our Services page for the full schedule.", "Group classes are included with Premium and Platinum memberships."],
-        default: ["I'm not sure I understand. Could you rephrase that?", "I'm still learning. Can you ask about memberships, classes, or personal training?"]
-    };
-    
-    // Quick replies
-    const quickReplies = {
-        "Membership Plans": "membership",
-        "Class Schedule": "classes",
-        "Personal Training": "training"
-    };
-    
-    // Add message to chat
-    function addMessage(message, isUser = false) {
-        const messageDiv = document.createElement('div');
-        messageDiv.classList.add('chatbot-message');
-        messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
-        messageDiv.innerHTML = `<p>${message}</p>`;
-        chatbotMessages.appendChild(messageDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-    
-    // Generate bot response
-    function getBotResponse(userMessage) {
-        userMessage = userMessage.toLowerCase();
-        
-        if (userMessage.includes('hi') || userMessage.includes('hello')) {
-            return botResponses.greeting[Math.floor(Math.random() * botResponses.greeting.length)];
-        } else if (userMessage.includes('membership') || userMessage.includes('price') || userMessage.includes('cost')) {
-            return botResponses.membership[Math.floor(Math.random() * botResponses.membership.length)];
-        } else if (userMessage.includes('hour') || userMessage.includes('open') || userMessage.includes('time')) {
-            return botResponses.hours[Math.floor(Math.random() * botResponses.hours.length)];
-        } else if (userMessage.includes('trainer') || userMessage.includes('coach') || userMessage.includes('personal')) {
-            return botResponses.training[Math.floor(Math.random() * botResponses.training.length)];
-        } else if (userMessage.includes('class') || userMessage.includes('schedule') || userMessage.includes('group')) {
-            return botResponses.classes[Math.floor(Math.random() * botResponses.classes.length)];
-        } else {
-            return botResponses.default[Math.floor(Math.random() * botResponses.default.length)];
-        }
-    }
-    
-    // Handle quick options
-    document.querySelectorAll('.quick-option').forEach(option => {
-        option.addEventListener('click', function() {
-            const text = this.textContent;
-            addMessage(text, true);
-            
-            // Remove quick options
-            document.querySelectorAll('.quick-options').forEach(el => el.remove());
-            
-            // Get response based on quick option
-            const responseType = quickReplies[text];
-            if (responseType) {
-                setTimeout(() => {
-                    addMessage(botResponses[responseType][0]);
-                }, 800);
-            }
-        });
-    });
-    
-    // Send message
-    function sendMessage() {
-        const message = userInput.value.trim();
-        if (message) {
-            addMessage(message, true);
-            userInput.value = '';
-            
-            setTimeout(() => {
-                const botResponse = getBotResponse(message);
-                addMessage(botResponse);
-            }, 1000);
-        }
-    }
-    
-    // Send message on button click or Enter key
-    sendMessageBtn.addEventListener('click', sendMessage);
-    userInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
-    
-    // Show welcome message
+    // Bot response
     setTimeout(() => {
-        chatbotContainer.classList.add('active');
-    }, 3000);
+        const botResponse = getBotResponse(message);
+        addMessage(botResponse, 'bot');
+    }, 500);
+};
+
+// Add message to chat
+const addMessage = (message, sender) => {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('chatbot-message', `${sender}-message`);
+    
+    const messageContent = document.createElement('p');
+    messageContent.textContent = message;
+    messageDiv.appendChild(messageContent);
+    
+    chatbotMessages.appendChild(messageDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+};
+
+// Get bot response based on user input
+const getBotResponse = (message) => {
+    const lowerMessage = message.toLowerCase();
+    
+    if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+        return "Hello there! How can I help you today at Masat Gym?";
+    } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
+        return "We offer several membership options starting at $49/month. Would you like me to send you more details about our pricing?";
+    } else if (lowerMessage.includes('schedule') || lowerMessage.includes('time')) {
+        return "Our gym is open 24/7 for premium members. Standard hours are 5AM-11PM on weekdays, with slightly reduced hours on weekends.";
+    } else if (lowerMessage.includes('trainer') || lowerMessage.includes('dero')) {
+        return "Dero is our head trainer with over 15 years of experience. He specializes in strength training and body transformations. Would you like to book a session with him?";
+    } else if (lowerMessage.includes('equipment') || lowerMessage.includes('machines')) {
+        return "We have top-of-the-line equipment from brands like Technogym and Life Fitness, including cardio machines, free weights, and functional training areas.";
+    } else if (lowerMessage.includes('trial') || lowerMessage.includes('free')) {
+        return "We offer a free 3-day trial for new members. You can sign up for it on our website or I can connect you with our staff to arrange it.";
+    } else {
+        return "I'm the Masat Gym assistant. For more specific questions, you can visit our website or I can connect you with our staff. How else can I help?";
+    }
+};
+
+// Event listeners
+sendMessageBtn.addEventListener('click', sendMessage);
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// Quick option buttons
+document.querySelectorAll('.quick-option').forEach(button => {
+    button.addEventListener('click', () => {
+        const optionText = button.textContent;
+        addMessage(optionText, 'user');
+        
+        setTimeout(() => {
+            const response = getBotResponse(optionText);
+            addMessage(response, 'bot');
+        }, 500);
+    });
 });

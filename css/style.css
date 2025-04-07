@@ -240,12 +240,11 @@ section {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    height: 100vh; /* or min-height: 600px for fixed height */
+    overflow: hidden;
+    color: white;
     display: flex;
     align-items: center;
-    color: var(--white);
-    overflow: hidden;
 }
 
 .hero-image {
@@ -254,10 +253,23 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://images.unsplash.com/photo-1581009137042-c552e485697a');
+    background-image: url('../images/IMG-20250407-WA0002.jpg'); /* Adjusted path */
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     z-index: -1;
+}
+
+/* Fallback if image doesn't load */
+.hero-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #121212; /* Dark fallback */
+    opacity: 0.5;
 }
 
 .overlay {
@@ -266,27 +278,29 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
 }
 
 .hero-content {
+    position: relative;
+    z-index: 2;
     max-width: 800px;
+    padding: 2rem;
 }
 
-.hero h1 {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.1;
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
 }
 
-.hero h1 span {
-    color: var(--primary-color);
+.hero-content h1 span {
+    color: #ffc107; /* Accent color for DERO */
 }
 
-.hero .lead {
-    font-size: 1.2rem;
-    margin-bottom: 2.5rem;
-    max-width: 600px;
+.lead {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
 }
 
 .cta-buttons {
